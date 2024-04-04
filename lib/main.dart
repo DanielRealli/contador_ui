@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    title: 'Aplicativos Mobile - Atividades',
+    home: HomePage(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -80,7 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
       } else {
         _counter--;
       }
-      
     });
   }
 
@@ -109,23 +111,22 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Column(children: <Widget>[
-
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        Row(
-            children: [
-              Center(child: Container(
-                height: 120.0,
-                width: (MediaQuery.of(context).size.width),
-                margin: EdgeInsets.only(top: 40.0, bottom: 40.0),
-                padding: EdgeInsets.only(left: 8.0, right: 8.0),
-                alignment: Alignment.center,
-                child: const Text('Aperte abaixo para adicionar ou decremetar o número de acesso de pessoas', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16))
-
-            ))
-          ]
-        ),
-    
+        Row(children: [
+          Center(
+              child: Container(
+                  height: 120.0,
+                  width: (MediaQuery.of(context).size.width),
+                  margin: EdgeInsets.only(top: 40.0, bottom: 40.0),
+                  padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                  alignment: Alignment.center,
+                  child: const Text(
+                      'Aperte abaixo para adicionar ou decremetar o número de acesso de pessoas',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16))))
+        ]),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -188,6 +189,53 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ]), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class RockPaperScissorsGame extends StatelessWidget {
+  const RockPaperScissorsGame({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+
+      title: 'Pedra, Papel e Tesoura',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        useMaterial3: true,
+      ),
+
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('GongoUI'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Game "Pedra, Papel e Tesoura"'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const RockPaperScissorsGame()),
+            );
+          },
+        ),
+        
+      ),
     );
   }
 }
